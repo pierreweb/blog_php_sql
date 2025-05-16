@@ -4,5 +4,5 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="page_liens.php">Liens</a></li>
-    <li><a href="affichedatabase.php">Liens</a></li>
+    <li><a href="affichedatabase.php">database</a></li>
 </ul>

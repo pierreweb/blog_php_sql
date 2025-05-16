@@ -5,4 +5,5 @@ db_data/
 docker-compose.yml
 init.sql
 watcher.sh
-public_html/assets/tinymce
+public_html/assets/tinymce/
+db_data/mysql.sock
