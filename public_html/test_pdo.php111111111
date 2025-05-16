@@ -1,0 +1,7 @@
+<?php
+try {
+    new PDO('mysql:host=db;dbname=blog_Conan', 'conan', 'barbare');
+    echo "Connexion réussie !";
+} catch (PDOException $e) {
+    echo "Erreur connexion : " . $e->getMessage();
+}

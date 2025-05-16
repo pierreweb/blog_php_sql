@@ -1,0 +1,241 @@
+/* Import d'une police cartoon proche de "babykruffy" */
+@import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
+
+:root {
+  --colorbackground: #330000;
+  --colorbackgroundbody: #1a0000;
+}
+
+/* Police et couleur générale */
+body {
+  font-family: "Sigmar One", cursive !important;
+  background-color: var(--colorbackgroundbody);
+  color: #fff3c0;
+}
+/* Animation du body */
+
+html {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.main,
+.aside,
+.navbar,
+.footer,
+.header {
+  transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+}
+/* Conteneur principal */
+.container {
+  background-color: var(--colorbackgroundbody);
+}
+
+/* HEADER stylisé avec image babykruffy */
+.header {
+  background-image: url("/images/bannieres/Conanthebarbarianheader4.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 200px;
+  background-color: var(--colorbackground);
+  border: 3px solid #ff3300;
+  box-shadow: 0 0 15px #ff6600;
+}
+
+/* NAVBAR style barbare cartoon */
+.navbar {
+  background-color: #400000;
+  /* border-top: 4px solid #ffcc00;
+  border-bottom: 4px solid #ffcc00; */
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  /* box-shadow: 0 0 10px #ff0000; */
+  border: 3px solid #ff3300;
+  box-shadow: 0 0 15px #ff6600;
+}
+
+.navbar a {
+  color: #ffcc00;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #fff3c0;
+  text-shadow: 0 0 8px #ffcc00;
+  background-color: #400000;
+}
+
+/* Zones principales */
+.main-aside {
+  display: flex;
+  gap: 20px;
+  background-color: var(--colorbackground);
+  padding: 0px;
+}
+
+.main,
+.aside {
+  background-color: #550000;
+  border: 3px solid #ff3300;
+  box-shadow: 0 0 10px #cc2200;
+  padding: 10px;
+  margin: 0px;
+  border-radius: 10px;
+}
+
+.compteur-container {
+  /* background: linear-gradient(to right, #ff3300, #550000);
+  border: 3px solid #ff3300;
+  box-shadow: 0 0 10px #cc2200; */
+  font-family: "Sigmar One", cursive !important;
+  font-size: 0.95rem;
+
+  /* font-family: 'Open Sans', sans-serif; */
+}
+
+/* Pagination pour les articles */
+
+.pagination a {
+  background-color: #550000;
+  color: white;
+}
+
+.pagination a.active {
+  background-color: #550000;
+}
+
+.pagination a:hover {
+  background-color: #550000;
+}
+
+.pagination .dots {
+  color: #999;
+}
+
+.pagination a {
+  background-color: #550000;
+  color: #fff3c0;
+}
+
+/* FOOTER */
+.footer {
+  background-color: #550000;
+  border: 3px solid #ff3300;
+  box-shadow: 0 0 10px #cc2200;
+  color: #ffcc99;
+  text-align: center;
+  padding: 15px;
+
+  margin-top: 30px;
+}
+
+/* TITRES puissants */
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+a:hover,
+u {
+  font-family: "Sigmar One", cursive !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #ffcc00;
+  /* text-shadow: 0 0 8px #ffcc00; */
+  text-shadow: 0 0 8px #1e1d17;
+}
+p {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: #fff3c0;
+}
+
+/* Liens */
+a {
+  color: #fff3c0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* Texte souligné stylisé */
+u {
+  text-decoration: underline wavy;
+  color: #fff3c0;
+}
+
+/* Style spécifique pour la page article */
+body.article-page {
+  background-color: #111 !important;
+  color: #f8f8f8 !important;
+  font-family: "Open Sans", sans-serif;
+}
+
+body.article-page .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+body.article-page h1 {
+  color: #ffd700;
+  font-family: "Cinzel", serif;
+}
+
+body.article-page a {
+  color: #ffcc00;
+  text-decoration: underline;
+}
+
+body.article-page img.postimg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+}
+
+/* Style pour le formulaire de contact */
+.contact-form {
+  background: #f4f4f4;
+}
+
+.contact-form h2 {
+  font-family: "Cinzel", serif;
+}
+
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #999;
+}
+
+.contact-form button {
+  background: darkred;
+  color: white;
+}
+
+.confirmation {
+  color: green;
+}

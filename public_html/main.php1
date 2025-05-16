@@ -1,0 +1,48 @@
+<?php
+$articlesParPage = 4;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $articlesParPage;
+
+$req = $pdo->prepare("SELECT * FROM articles ORDER BY created_at DESC LIMIT :limit OFFSET :offset");
+$req->bindValue(':limit', $articlesParPage, PDO::PARAM_INT);
+$req->bindValue(':offset', $offset, PDO::PARAM_INT);
+$req->execute();
+$articles = $req->fetchAll();
+
+$totalArticles = $pdo->query("SELECT COUNT(*) FROM articles")->fetchColumn();
+$nombreDePages = ceil($totalArticles / $articlesParPage);
+?>
+
+
+<?php foreach ($articles as $article): ?>
+  <article>
+    <h2><?= htmlspecialchars($article['title']) ?></h2>
+    <img src="<?= $article['image'] ?>" alt="" width="400">
+    <p><?= nl2br(htmlspecialchars($article['content'])) ?></p>
+    echo "<a href='article.php?id={$article[' id']}'>Lire la suite</a>";
+    <hr>
+  </article>
+<?php endforeach; ?>
+
+<div class="pagination">
+  <?php if ($page > 1): ?>
+    <a href="?page=1">&laquo;&laquo;</a>
+    <a href="?page=<?= $page - 1 ?>">&laquo;</a>
+  <?php endif; ?>
+
+  <?php
+  $range = 2;
+  for ($i = max(1, $page - $range); $i <= min($nombreDePages, $page + $range); $i++): ?>
+    <?php if ($i == $page): ?>
+      <strong><?= $i ?></strong>
+    <?php else: ?>
+      <a href="?page=<?= $i ?>"><?= $i ?></a>
+    <?php endif; ?>
+  <?php endfor; ?>
+
+  <?php if ($page < $nombreDePages): ?>
+    <a href="?page=<?= $page + 1 ?>">&raquo;</a>
+    <a href="?page=<?= $nombreDePages ?>">&raquo;&raquo;</a>
+  <?php endif; ?>
+</div>

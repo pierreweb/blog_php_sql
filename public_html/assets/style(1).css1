@@ -1,0 +1,174 @@
+
+/* ----------------------------
+   STYLE GÉNÉRAL
+----------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #444444;
+    color: #222;
+}
+
+/* Animation du body */
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Ajustez l'espacement entre les éléments ici */
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header, .nav, .footer {
+    width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 15px; /* Coins arrondis */
+    padding: 10px;
+    text-align: center;
+}
+
+/* ----------------------------
+   HEADER
+----------------------------- */
+.header img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+/* ----------------------------
+   NAVBAR
+----------------------------- */
+.navbar ul {
+  list-style: none; /* Supprime les puces */
+  margin: 10px;
+  padding: 0px;
+  display: flex; /* Organisation horizontale */
+  justify-content: space-around; /* Espacement uniforme entre les éléments */
+}
+
+.navbar li {
+  margin: 10px; /* Supprime le margin autour des items */
+}
+
+.navbar a {
+  color: white; /* Couleur du texte */
+  text-decoration: none; /* Supprime le soulignement */
+  padding: 0.5em 1em; /* Espacement interne pour les liens */
+  transition: background-color 0.3s; /* Animation pour le changement de couleur */
+}
+
+.navbar a:hover {
+  background-color: #575757; /* Couleur de fond au survol */
+}
+
+/* ----------------------------
+   CONTENEUR PRINCIPAL
+----------------------------- */
+
+.main-aside {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+/* ----------------------------
+   CONTENEUR POSTS
+----------------------------- */
+
+.main {
+    flex: 2; /* 2/3 de la largeur */
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+/* ----------------------------
+   IMAGES DANS LES ARTICLES (avec animation)
+----------------------------- */
+.post img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    /* Animation fade-in au chargement */
+    opacity: 0;
+    transform: scale(0.98);
+    animation: fadeZoomIn 0.8s ease forwards;
+}
+
+/* Effet au survol */
+.post img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Animation clé */
+@keyframes fadeZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ----------------------------
+   ASIDE (COLONNE DROITE)
+----------------------------- */
+
+.aside {
+    flex: 1; /* 1/3 de la largeur */
+    background-color: #d0d0d0;
+    border-radius: 15px;
+    padding: 10px;
+}
+.category-cloud {
+    all: unset;
+}
+.category-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: inherit;
+}
+
+/* ----------------------------
+   FOOTER
+----------------------------- */
+.footer {
+    background-color: #c0c0c0;
+    border-radius: 15px;
+}
+
+
+/* ----------------------------
+   BOUTON CHANGE-THEME
+------------------------------- */
+#change-theme-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    cursor: pointer;

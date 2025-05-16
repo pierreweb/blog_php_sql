@@ -1,0 +1,1 @@
+<p>&copy; <?= date('Y') ?> Conan le Barbare - Tous droits réservés</p>

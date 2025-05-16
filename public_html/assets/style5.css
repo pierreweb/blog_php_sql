@@ -1,0 +1,38 @@
+/* Police style cartoon/comic proche d'ObelixPro */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+body {
+    font-family: 'Luckiest Guy', cursive;
+    background-color: #e1fa01;
+    color: #fff3c0;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+/* Animation du body */
+
+html {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  .main, .aside, .navbar, .footer, .header {
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+  }
+/* Conteneur principal */
+.container {
+    background-color: #111;
+}
+
+/* HEADER avec bannière */
+header {
+    background-image: url('/images/bannieres/Conanthebarbarianheader5.png');
+    /* background-size: cover;
+    background-position: center; */
+    height: 250px;
+    /* border-bottom: 5px solid #002060; */
+}
+

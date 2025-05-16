@@ -1,0 +1,23 @@
+.category-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-cloud a {
+  text-decoration: none;
+ /* color: #333;*/
+}
+
+.category-cloud .large {
+  font-size: 24px; 
+  font-weight: bold;
+}
+
+.category-cloud .medium {
+  font-size: 18px;
+}
+
+.category-cloud .small {
+  font-size: 14px; 
+}

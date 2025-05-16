@@ -1,0 +1,103 @@
+/* === STYLE2.CSS : Thème alternatif sombre et métallique === */
+    /* Police spéciale Metal Mania via Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+
+  /* Couleur de fond principale */
+  body {
+    background-color: #0d001a;
+    color: #eeeeee;
+    font-family: 'Metal Mania', cursive; /* Fallback si police non trouvée */
+  }
+
+  /* Animation du body */
+
+html {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.main, .aside, .navbar, .footer, .header {
+  transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+}
+  
+  /* Titres avec effet métallique et grand style */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Metal Mania', cursive;
+    color: #cccccc;
+    text-shadow: 1px 1px 3px #000000;
+  }
+  
+  /* Liens */
+  a {
+    color: #bb3333;
+  }
+  a:hover {
+    color: #ff4444;
+    text-decoration: underline;
+  }
+  
+  /* Conteneur principal */
+  .container {
+    display: flex;
+    background-color: #1a001f;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  
+
+    /* Change l’image du header */
+    header {
+        background-image: url('/images/bannieres/Conanthebarbarianheader2.png');
+    }
+  /* Navbar sombre avec reflets */
+    .navbar {
+    background-color: #1c0026;
+    padding: 10px 20px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 2px 5px #000000;
+  }
+  
+  .navbar a {
+    color: #c903fa;
+    font-family: 'Metal Mania', cursive;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar a:hover {
+    color: #ff4444;
+    text-shadow: 0 0 5px #ff4444;
+  }
+  /* Zones main et aside */
+  .main-aside {
+    flex: 3;
+    background-color: #220033;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .aside {
+    flex: 1;
+    background-color: #2d003d;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #12001a;
+    color: #aaa;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+  }
+  
+
+
+

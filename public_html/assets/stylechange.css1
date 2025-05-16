@@ -1,0 +1,98 @@
+/* style commun*/
+.header,.header.style0, .header.style1, .header.style2 {
+    height: 250px; /* Hauteur fixe */
+    width: 100%; /* Largeur pleine */
+
+    border-radius: 15px; /* Coins arrondis */
+    overflow: hidden; /* Masque tout dépassement éventuel */
+    background-size: contain; /* L'image sera entièrement visible */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+}
+/*.header img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}*/
+
+
+/* Style 0 */
+.style0 {
+    background-color: #ff0000; /* Couleur de fond du body */
+}
+
+.header.style0 {
+    background-color: #ff0000; /* Couleur par défaut du header */
+    color: #333; /* Couleur du texte */
+    background-image: url('../images/bannieres/Conanthebarbarianheader1.png');/*images/bannieres/Conanthebarbarianheader1.png*/
+}
+
+.main.style0 {
+    background-color: #ee0000;
+    color: #222;
+}
+
+.aside.style0 {
+    background-color: #d00000;
+    color: #444;
+}
+
+.footer.style0 {
+    background-color: #c01111;
+    color: #555;
+}
+
+/* Style modifié (Style 1) */
+.style1 {
+    background-color: #0000ff; /* Body */
+}
+
+.header.style1 {
+    background-color: #0000ff;
+    color: #fff;
+    background-image: url('../images/bannieres/Conanthebarbarianheader2.png');
+
+}
+
+.main.style1 {
+    background-color: #444444;
+    color: #fff;
+}
+
+.aside.style1 {
+    background-color: #1111ee;
+    color: #eaeaea;
+}
+
+.footer.style1 {
+    background-color: #0000aa;
+    color: #fff;
+}
+
+/* Style modifié (Style 2) */
+.style2 {
+    background-color: #00ff00; /* Body */
+}
+
+.header.style2 {
+    background-color: #00ff00;
+    color: #fff;
+    background-image: url('../images/bannieres/Conanthebarbarianheader3.png');
+
+}
+
+.main.style2 {
+    background-color: #444444;
+    color: #fff;
+}
+
+.aside.style2 {
+    background-color: #555555;
+    color: #eaeaea;
+}
+
+.footer.style2 {
+    background-color: #222222;
+    color: #fff;
+}

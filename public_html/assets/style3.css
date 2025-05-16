@@ -1,0 +1,144 @@
+/* Import de la police épique */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+body {
+    font-family: 'Luckiest Guy', cursive;
+    background-color: var(--colorbackgroundbody);
+    color: #fff3c0;
+    /* margin: 0;
+    padding: 0;
+    line-height: 1.6; */
+}
+/* Animation du body */
+
+html {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  .main, .aside, .navbar, .footer, .header {
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+  }
+
+/* Conteneur principal */
+.container {
+    background-color: var(--colorbackgroundbody);
+}
+
+/* HEADER inspiré de l'image */
+.header {
+    background-image: url('/images/bannieres/Conanthebarbarianheader3.png');
+    /* color: #fff; */
+    /* border-bottom: 5px solid #ff0000; */
+    background-color: var(--colorbackground);
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 10px #ff0000;
+    /* background-size: cover;
+    background-position: center;
+    height: 250px;
+    
+    text-align: center;
+   
+    font-size: 2.5em;
+    text-shadow: 3px 3px 8px #000; */
+}
+
+/* NAVBAR stylisée */
+.navbar {
+    /* background-color: #002060; */
+    background-color: var(--colorbackground);
+ 
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 10px #ff0000;
+    /* height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.navbar a {
+    color: #ffcc00;
+    /* margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold; */
+    font-size: 1em; /* Adapté à la navbar */
+}
+
+.navbar a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #ffcc00;
+}
+
+/* ZONE PRINCIPALE */
+.main-aside {
+    /* display: flex;
+    gap: 20px; */
+    background-color: var(--colorbackground);
+}
+
+.main {
+    /* flex: 3;
+    padding: 20px; */
+    background-color: var(--colorbackground);
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 10px #ff0000;
+}
+
+.aside {
+    /* flex: 1;
+    padding: 20px; */
+    background-color: var(--colorbackground);
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 10px #ff0000;
+    color: #ffd;
+    /* border-left: 2px solid #ffcc00; */
+}
+
+/* FOOTER */
+.footer {
+    background-color: #002060;
+    /* text-align: center; */
+    color: #fff3c0;
+    /* padding: 20px; */
+}
+
+/* TITRES puissants */
+h1, h2, h3, h4, h5 {
+    color: #ffcc00;
+    text-shadow: 2px 2px 4px #ff0000;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+h1 { font-size: 3em; }
+h2 { font-size: 2.5em; }
+h3 { font-size: 2em; }
+h4 { font-size: 1.6em; }
+h5 { font-size: 1.3em; }
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+/* Liens */
+a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+/* Texte souligné stylisé */
+u {
+    text-decoration: underline wavy #ffcc00;
+}
+
+
+

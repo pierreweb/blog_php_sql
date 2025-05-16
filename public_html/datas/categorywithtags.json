@@ -1,0 +1,8 @@
+{
+  "illustration": ["Frazetta", "poster", "numérique"],
+  "scénario": ["dialogue", "intrigue", "personnages"],
+  "horreur": ["fantôme", "Dracula", "Frankenstein", "loup garou"],
+  "fantastique": ["King Kong", "Lord of the ring", "Le monde perdu"],
+  "science-fiction": ["robot", "espace", "avenir"],
+  "humour": ["blague", "absurde", "satire"]
+}
