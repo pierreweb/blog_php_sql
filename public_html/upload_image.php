@@ -1,26 +1,31 @@
-
 <?php
-$targetDir = "uploads/";
-if (!is_dir($targetDir)) {
-    mkdir($targetDir, 0755, true);
+header('Content-Type: application/json');
+
+if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+    echo json_encode(['success' => false, 'error' => 'No valid image uploaded']);
+    exit;
 }
 
-$category = preg_replace('/[^a-z0-9_\-]/i', '', $_POST['category'] ?? 'uncategorized');
-$date = date('Ymd_His');
+$allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+$fileType = mime_content_type($_FILES['image']['tmp_name']);
 
-if (!empty($_FILES['image']['name'])) {
-    $originalName = basename($_FILES['image']['name']);
-    $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+if (!in_array($fileType, $allowedTypes)) {
+    echo json_encode(['success' => false, 'error' => 'Invalid file type']);
+    exit;
+}
 
-    // Nouveau nom de fichier
-    $fileName = $category . '_' . $date . '.' . $extension;
-    $targetFilePath = $targetDir . $fileName;
+$uploadDir = __DIR__ . '/uploads/';
+if (!is_dir($uploadDir)) {
+    mkdir($uploadDir, 0755, true);
+}
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
-        echo json_encode(['success' => true, 'url' => $targetFilePath]);
-    } else {
-        echo json_encode(['success' => false, 'error' => 'Échec du téléversement']);
-    }
+$ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+$filename = uniqid('img_', true) . '.' . $ext;
+$destination = $uploadDir . $filename;
+
+if (move_uploaded_file($_FILES['image']['tmp_name'], $destination)) {
+    $url = '/uploads/' . $filename;
+    echo json_encode(['success' => true, 'url' => $url]);
 } else {
-    echo json_encode(['success' => false, 'error' => 'Aucun fichier']);
+    echo json_encode(['success' => false, 'error' => 'Failed to save image']);
 }

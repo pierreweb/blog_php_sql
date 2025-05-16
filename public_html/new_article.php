@@ -96,6 +96,8 @@ require 'config.php';
 
 
             <input type="hidden" name="content" id="hiddenContent">
+
+
         </div>
 
         <button type="submit">Publier</button>
@@ -107,14 +109,23 @@ require 'config.php';
 
 
 <script>
-    // Initialisation de Quill 
-    var quill = new Quill('#editor', {
-        placeholder: 'Écris ton article ici...',
+    const quill = new Quill('#editor', {
         theme: 'snow',
         modules: {
-            syntax: true,
             toolbar: {
-                container: '#toolbar-container',
+                container: [
+                    [{
+                        'header': [1, 2, false]
+                    }],
+                    ['bold', 'italic', 'underline'],
+                    ['image', 'code-block', 'video'],
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }],
+                    ['clean']
+                ],
                 handlers: {
                     image: imageHandler
                 }
@@ -122,8 +133,8 @@ require 'config.php';
         }
     });
 
+    // 1️⃣ Quand on clique sur le bouton image de Quill
     function imageHandler() {
-        // alert("imageHandler");
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
         input.setAttribute('accept', 'image/*');
@@ -132,34 +143,68 @@ require 'config.php';
         input.onchange = () => {
             const file = input.files[0];
             if (file) {
-                const formData = new FormData();
-                formData.append('image', file);
-
-                fetch('upload_image.php', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.success) {
-                            const range = quill.getSelection();
-                            quill.insertEmbed(range.index, 'image', data.url);
-                        } else {
-                            alert('Erreur : ' + data.error);
-                        }
+                uploadImage(file)
+                    .then(url => {
+                        const range = quill.getSelection();
+                        quill.insertEmbed(range.index, 'image', url);
                     })
                     .catch(err => {
-                        alert('Téléversement échoué.');
+                        alert('Erreur : ' + err.message);
                         console.error(err);
                     });
             }
         };
     }
 
-    // Envoie du contenu dans le champ caché lors de la soumission
+    // 2️⃣ Pour coller ou glisser-déposer une image en base64
+    function handleBase64Images(e) {
+        setTimeout(() => {
+            const imgs = quill.root.querySelectorAll('img');
+            imgs.forEach(img => {
+                if (img.src.startsWith('data:image/')) {
+                    fetch(img.src)
+                        .then(res => res.blob())
+                        .then(blob => {
+                            const file = new File([blob], "image.png", {
+                                type: blob.type
+                            });
+                            return uploadImage(file);
+                        })
+                        .then(url => {
+                            img.setAttribute('src', url); // remplace le base64 par l’URL
+                        })
+                        .catch(err => {
+                            console.error("Échec de l'upload :", err);
+                        });
+                }
+            });
+        }, 100); // petit délai pour laisser Quill insérer l’image collée
+    }
+
+    // 3️⃣ Envoie l’image au serveur via upload_image.php
+    async function uploadImage(file) {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const res = await fetch('upload_image.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || "Upload failed");
+        return data.url;
+    }
+
+    // 4️⃣ Nettoyage avant envoi
     document.querySelector('form').addEventListener('submit', function() {
         document.querySelector('#hiddenContent').value = quill.root.innerHTML;
     });
+
+    // 5️⃣ Attache paste & drop
+    quill.root.addEventListener('paste', handleBase64Images);
+    quill.root.addEventListener('drop', handleBase64Images);
 </script>
+
 
 </html>

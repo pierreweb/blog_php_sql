@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -11,61 +12,50 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    //$title = $_POST['title'] ?? '';
-    $category = $_POST['category'] ?? '';
-    // $content = $_POST['content'] ?? '';
-    $tags = $_POST['tags'] ?? [];
-
-
     $title = trim($_POST['title'] ?? '');
+    $category = trim($_POST['category'] ?? '');
     $content = trim($_POST['content'] ?? '');
+    $tags = $_POST['tags'] ?? [];
     $createdAt = date('Y-m-d H:i:s');
-    $imageUrl = trim($_POST['image_url'] ?? ''); // Définit une valeur par défaut si l’image est absente
 
+    // Essaye de récupérer image_url du formulaire
+    $imageUrl = trim($_POST['image_url'] ?? '');
 
-    // Insérer l'article
-
-
-    if ($imageUrl) {
-        $content .= "<img src='$imageUrl' alt='Image de l\'article'>";
+    // Sinon, extrait la première image du contenu Quill
+    if (empty($imageUrl)) {
+        if (preg_match('/<img[^>]+src="([^"]+)"/', $content, $matches)) {
+            $imageUrl = $matches[1];
+        }
     }
 
-    $stmt = $pdo->prepare("INSERT INTO articles (title, category, content, imageUrl) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$title, $category, $content, $imageUrl]);
+    // Insertion de l’article
+    $stmt = $pdo->prepare("INSERT INTO articles (title, category, content, imageUrl, created_at) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([$title, $category, $content, $imageUrl, $createdAt]);
     $articleId = $pdo->lastInsertId();
 
-
-
-
-
-    // Insérer les tags et les lier à l'article
+    // Traitement des tags
     foreach ($tags as $tag) {
         $tag = trim($tag);
         if ($tag !== '') {
-            // Vérifier si le tag existe déjà
-            $stmt = $pdo->prepare("INSERT INTO articles (title, category, content, imageUrl) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$title, $category, $content, $imageUrl]);
-
+            // Vérifie si le tag existe déjà
+            $stmt = $pdo->prepare("SELECT id FROM tags WHERE name = ?");
+            $stmt->execute([$tag]);
             $tagId = $stmt->fetchColumn();
 
             if (!$tagId) {
-                // Insérer le nouveau tag
+                // Si le tag n’existe pas, on l’ajoute
                 $stmt = $pdo->prepare("INSERT INTO tags (name) VALUES (?)");
                 $stmt->execute([$tag]);
                 $tagId = $pdo->lastInsertId();
             }
 
-            // Lier le tag à l'article
+            // Lier le tag à l’article
             $stmt = $pdo->prepare("INSERT INTO article_tags (article_id, tag_id) VALUES (?, ?)");
             $stmt->execute([$articleId, $tagId]);
         }
     }
 
-    //header("Location: articles.php");
     header('Location: index.php');
     exit;
-}
+} // 👈 CE } MANQUAIT !
