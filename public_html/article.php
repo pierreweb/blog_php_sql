@@ -64,9 +64,9 @@ $cat = ($article['category']);
 
         </div>
         <!-- <p class="date">Publié le <?= $date ?></p> -->
-        <?php if ($article['imageUrl']) : ?>
+        <!-- <?php if ($article['imageUrl']) : ?>
             <img src="<?= htmlspecialchars($article['imageUrl']) ?>" alt="Image article" class="postimg">
-        <?php endif; ?>
+        <?php endif; ?> -->
         <div class="content">
             <?= nl2br($article['content']) ?>
         </div>
