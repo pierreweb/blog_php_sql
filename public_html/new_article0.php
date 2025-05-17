@@ -264,3 +264,32 @@ require 'config.php';
 </body>
 
 </html>
+
+<!-- <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const input = document.querySelector('#category');
+
+        fetch('./datas/categoryandtags.json')
+            .then(res => res.json())
+            .then(data => {
+                const categories = data.categories;
+                console.log(categories)
+                if (!Array.isArray(categories)) {
+                    console.error("Erreur : 'categories' n'est pas un tableau");
+                    return;
+                }
+
+                // Initialisation Tagify
+                new Tagify(input, {
+                    whitelist: categories,
+                    maxTags: 1,
+                    enforceWhitelist: false,
+                    dropdown: {
+                        enabled: 0, // 0 = always show suggestions on focus
+                        fuzzySearch: true
+                    }
+                });
+            })
+            .catch(err => console.error("Erreur de chargement de category.json :", err));
+    });
+</script> -->

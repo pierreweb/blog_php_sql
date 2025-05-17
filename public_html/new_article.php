@@ -1,10 +1,12 @@
 <?php
-/* session_start();
-if (!isset($_SESSION['admin'])) {
-    header('Location: login.php');
-    exit;
-} */
+session_start(); // ✅ Activation correcte de la session
 require 'config.php';
+
+// Récupération des catégories et tags depuis JSON
+$data = json_decode(file_get_contents('./datas/categoryandtags.json'), true);
+$categories = $data['categories'] ?? [];
+$tags = $data['tags'] ?? [];
+
 ?>
 
 <!DOCTYPE html>
@@ -13,75 +15,102 @@ require 'config.php';
 <head>
     <meta charset="UTF-8">
     <title>Nouvel article</title>
-    <!-- <link href="assets/styles.css" rel="stylesheet" /> -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+
+    <link rel="stylesheet" href="./assets/quill.css">
 </head>
 
 <body>
 
     <h1>Créer un nouvel article</h1>
 
-    <!--     <form action="save_article.php" method="post">
-        <div class="form-group">
-            <label for="title">Titre :</label><br>
-            <input type="text" name="title" id="title" required style="width: 100%; padding: 8px;">
-        </div>
-
-        <div class="form-group">
-            <label for="editor">Contenu :</label>
- 
-            <div id="toolbar-container">
-
-
-
-            <input type="hidden" name="content" id="hiddenContent">
-
-
-        </div>
-
-        <button type="submit">Publier</button>
-    </form> -->
-
-
     <div class="container">
         <form action="save_article.php" method="post">
             <div class="form-group">
-                <label for="title">Title</label>
-                <input id="title" name="title" type="text">
+                <label for="title">Titre :</label>
+                <input type="text" name="title" id="title" required>
             </div>
-            <div class="form-group">
-                <label for="category">catégories</label>
-                <input id="category" name="category" type="text">
-            </div>
-            <div class="form-group">
-                <label>Article</label>
-                <div id="editor"></div>
-            </div>
-            <button type="submit">Submit Form</button>
-            <input type="hidden" name="content" id="hiddenContent">
 
+            <div class="form-group">
+                <label for="category">Catégories :</label>
+                <input name="category" id="category-input" placeholder="Choisir ou ajouter une catégorie...">
+            </div>
+
+            <div class="form-group">
+                <label for="tags">tags :</label>
+                <!-- <input name="tags[]" id="tags-input" placeholder="Ajoute des tags..."> -->
+                <input name="tag" id="tags-input" placeholder="Ajoute des tags...">
+
+            </div>
+
+            <div class="form-group">
+                <label>Article :</label>
+                <div id="editor"></div>
+                <input type="hidden" name="content" id="hiddenContent">
+            </div>
+
+            <button type="submit">Publier</button>
         </form>
     </div>
-
-
-
-
-
 
 </body>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const existingCategories = <?php echo json_encode($categories); ?>;
+        console.log("Catégories disponibles :", existingCategories);
+
+        const categoryInput = document.querySelector("#category-input");
+
+        if (categoryInput && existingCategories.length) {
+            new Tagify(categoryInput, {
+                enforceWhitelist: false, // Autorise l'ajout de nouvelles catégories
+                whitelist: existingCategories,
+                dropdown: {
+                    enabled: 0, // 🔥 Affiche automatiquement les suggestions
+                    fuzzySearch: true,
+                    position: "text",
+                }
+            });
+        }
+
+        const existingTags = <?php echo json_encode($tags); ?>;
+        console.log("Tags disponibles :", existingTags);
+
+        const tagsInput = document.querySelector("#tags-input");
+
+        if (tagsInput) {
+            new Tagify(tagsInput, {
+                whitelist: existingTags, // 🔥 Autocomplétion activée !
+                dropdown: {
+                    enabled: 0, // Affiche automatiquement les suggestions
+                    fuzzySearch: true,
+                    position: "text",
+                }
+            });
+        }
+
+    });
+
+    // Initialisation de Quill
+    const quill = new Quill('#editor', {
+        theme: 'snow',
+        placeholder: 'Écris ton article ici...',
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                ['image', 'video', 'code-block']
+            ]
+        }
+    });
+
     document.querySelector('form').addEventListener('submit', async function(e) {
-        e.preventDefault(); // on empêche l’envoi automatique
+        e.preventDefault(); // Empêcher la soumission immédiate
 
-        const delta = quill.getContents();
         const html = quill.root.innerHTML;
-
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         const images = doc.querySelectorAll('img');
@@ -103,40 +132,13 @@ require 'config.php';
                     img.setAttribute('src', result.url);
                 } else {
                     alert("Erreur d'upload : " + result.error);
-                    return; // stop tout si erreur
+                    return;
                 }
             }
         }
 
-        // Remplacer le contenu dans le champ caché
         document.querySelector('#hiddenContent').value = doc.body.innerHTML;
-
-        // Puis soumettre le formulaire
         e.target.submit();
-    });
-</script>
-
-<script>
-    // Initialisation de Quill
-    const quill = new Quill('#editor', {
-        modules: {
-            toolbar: [
-                [{
-                    header: [1, 2, false]
-                }],
-                ['bold', 'italic', 'underline'],
-                ['image', 'video', 'code-block'],
-            ],
-        },
-        placeholder: 'Compose an epic...',
-        theme: 'snow', // or 'bubble'
-    });
-
-    // Écouteur d'événement pour le formulaire
-    document.querySelector('form').addEventListener('submit', function(e) {
-        // Récupérer le contenu de l'éditeur et le stocker dans un champ caché
-        var content = quill.root.innerHTML;
-        document.querySelector('#hiddenContent').value = content;
     });
 </script>
 

@@ -21,10 +21,26 @@ if (!$article) {
     echo "Article introuvable.";
     exit;
 }
+// Récupération  tag
+$articleId = $article['id'];
+$stmt = $pdo->prepare("
+    SELECT t.name 
+    FROM tags t
+    INNER JOIN article_tags at ON t.id = at.tag_id
+    WHERE at.article_id = ?
+");
+$stmt->execute([$articleId]);
+$tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+
+
 
 $date = (new DateTime($article['created_at']))->format('d/m/Y');
-$catagory = (new DateTime($article['created_at']))->format('d/m/Y');
+//$catagory = (new DateTime($article['created_at']))->format('d/m/Y');
 $cat = ($article['category']);
+$tag = implode(', ', $tags); // Convertit le tableau de tags en chaîne de caractères
+//$tag = ($tag);
+
 ?>
 
 
@@ -59,8 +75,8 @@ $cat = ($article['category']);
         <h1><?= htmlspecialchars($article['title']) ?></h1>
         <div class="article-meta">
             <p class="date">Publié le <?= $date ?> </p>
-            <p class="date">Catégorie:<?= $cat ?> </p>
-            <p class="date">Tags:<?= $cat ?> </p>
+            <p class="category">Catégorie:<?= $cat ?> </p>
+            <p class="tag">Tags:<?= $tag ?> </p>
 
         </div>
         <!-- <p class="date">Publié le <?= $date ?></p> -->
