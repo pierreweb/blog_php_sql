@@ -1,0 +1,30 @@
+/* .tag-cloud a {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 5px;
+  background: #eee; 
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+} */
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* .tag-cloud a {
+    padding: 6px 12px;
+     background-color: #f0f0f0; 
+    border-radius: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+} */
+
+/* .tag-cloud a:hover {
+    background-color: #dcdcdc;
+} */

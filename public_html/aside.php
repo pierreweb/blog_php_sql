@@ -43,6 +43,9 @@ $visites = file_exists('compteur.txt') ? file_get_contents('compteur.txt') : 0;
 <!-- Inclure le nuage de catégories -->
 <?php include 'category-cloud.php'; ?>
 <!-- <a href="test.html">test</a>-->
+<h3>tags</h3>
+<!-- <?php /* include 'page_tags.php';  */ ?> -->
+<a href="page_tags.php">liste tags</a>
 <h3>galerie</h3>
 <a href='gallery.php'>galerie</a>
 <h3>archives</h3>
