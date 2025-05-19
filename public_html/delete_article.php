@@ -59,6 +59,27 @@ if (isset($_GET['id'])) {
             // Supprimer l'article
             $stmt = $pdo->prepare("DELETE FROM articles WHERE id = ?");
             $stmt->execute([$id]);
+            // Supprimer les tags associés à l'article
+            $stmt = $pdo->prepare("DELETE FROM tags WHERE id NOT IN (SELECT tag_id FROM article_tags)");
+            $stmt->execute();
+
+            // 🔄 Mettre à jour le JSON en ne gardant que les tags existants
+            // 🔄 Charger les données du fichier JSON
+            $json = json_decode(file_get_contents('./datas/categoryandtags.json'), true) ?? [];
+            // 🔥 Assurer que `tags` existe dans le JSON
+            $existingTags = isset($json['tags']) ? $json['tags'] : [];
+            // 🔄 Récupérer les tags encore utilisés dans la base SQL
+            $stmt = $pdo->prepare("SELECT name FROM tags");
+            $stmt->execute();
+            $tagsInDb = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            // 🔥 Vérifier que `$tagsInDb` est bien défini avant `array_intersect()`
+            if (!empty($existingTags) && !empty($tagsInDb)) {
+                $json['tags'] = array_values(array_intersect($existingTags, $tagsInDb));
+            } else {
+                $json['tags'] = []; // 🔄 Si aucun tag valide, on vide la liste
+            }
+            // 🔄 Mettre à jour `categoryandtags.json`
+            file_put_contents('./datas/categoryandtags.json', json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         }
 
         header('Location: index.php'); // retour à la liste

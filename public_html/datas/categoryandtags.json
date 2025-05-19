@@ -1,36 +1,21 @@
 {
-  "categories": [
-    "Comics",
-    "Conan",
-    "Divers",
-    "Films",
-    "Horreur",
-    "Illustration",
-    "Jeux vidéo",
-    "King Kong",
-    "koukou",
-    "Science-fiction",
-    "Scénario"
-  ],
-  "tags": [
-    "2001 space odissey",
-    "comics",
-    "Dracula",
-    "Frankenstein",
-    "humour",
-    "illustration",
-    "Jason et les argonautes",
-    "jeux vidéos",
-    "jules Verne",
-    "King Kong",
-    "Le monde perdu",
-    "Lord of the ring",
-    "loup garou",
-    "Monstres",
-    "roman",
-    "science fiction",
-    "scénario",
-    "Terminator",
-    "vidéo"
-  ]
+    "categories": [
+        "Comics",
+        "Conan",
+        "Divers",
+        "Films",
+        "Horreur",
+        "Illustration",
+        "Jeux vidéo",
+        "King Kong",
+        "Science-fiction",
+        "Scénario"
+    ],
+    "tags": [
+        "aventure",
+        "barbare",
+        "magie",
+        "monstre",
+        "sorcier"
+    ]
 }
