@@ -1,0 +1,35 @@
+let currentStyleIndex = 0; // Commence avec le style initial
+const styles = ['style0', 'style1', 'style2']; // Liste des styles
+// alert("alert1");
+function changeStyle() {
+    const body = document.querySelector('body');
+    const elements = document.querySelectorAll('.header, .main, .aside, .footer');
+
+    // Supprime la classe actuelle
+    body.classList.remove(styles[currentStyleIndex]);
+    elements.forEach(element => {
+        element.classList.remove(styles[currentStyleIndex]);
+    });
+
+    // Passe au prochain style
+    currentStyleIndex = (currentStyleIndex + 1) % styles.length;
+
+    // Affiche l'index actuel dans la console (pour déboguer)
+    console.log(`Style actuel : ${styles[currentStyleIndex]} (Index : ${currentStyleIndex})`);
+
+    
+
+    // Applique le nouveau style
+    body.classList.add(styles[currentStyleIndex]);
+    elements.forEach(element => {
+        element.classList.add(styles[currentStyleIndex]);
+    });
+}
+
+
+
+// Ajoute un écouteur d'événements au bouton
+document.getElementById('change-theme-btn').addEventListener('click', changeStyle);
+
+
+

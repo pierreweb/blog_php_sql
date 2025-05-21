@@ -1,0 +1,28 @@
+
+FROM php:8.2-apache
+
+RUN a2enmod rewrite
+
+# Installation minimale
+RUN apt-get update && apt-get install -y libicu-dev && docker-php-ext-install intl pdo pdo_mysql
+
+
+
+
+
+
+
+
+COPY ./public_html /var/www/html
+COPY ./watcher.sh /usr/local/bin/watcher.sh
+
+RUN chmod +x /usr/local/bin/watcher.sh
+RUN chown -R www-data:www-data /var/www/html
+
+# Installation et activation de PDO MySQL
+RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-enable pdo_mysql
+
+
+
+CMD ["sh", "-c", "/usr/local/bin/watcher.sh & apache2-foreground"]

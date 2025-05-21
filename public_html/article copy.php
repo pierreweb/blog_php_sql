@@ -82,20 +82,13 @@ $tag = implode(', ', $tags); // Convertit le tableau de tags en chaîne de carac
             <p class="tag">Tags:<?= $tag ?> </p>
 
         </div>
-
+        <!-- <p class="date">Publié le <?= $date ?></p> -->
+        <!-- <?php if ($article['imageUrl']) : ?>
+            <img src="<?= htmlspecialchars($article['imageUrl']) ?>" alt="Image article" class="postimg">
+        <?php endif; ?> -->
         <div class="article_content">
-            <?php
-            $content = nl2br($article['content']);
-            // Ajout de la classe et de l'appel JS
-            $content = str_replace(
-                '<img',
-                '<img class="postimg" onclick="openLightbox(this.src)"',
-                $content
-            );
-            echo $content;
-            ?>
+            <?= nl2br($article['content']) ?>
         </div>
-
 
         <?php if (isset($_SESSION['admin'])):
         ?>
@@ -105,11 +98,10 @@ $tag = implode(', ', $tags); // Convertit le tableau de tags en chaîne de carac
         <p><a href="index.php">← Retour au blog</a></p>
     </div>
     <div id="lightbox-overlay" onclick="this.style.display='none'">
-        <img id="lightbox-img" src="" alt="Image agrandie">
+        <img src="" alt="Image agrandie">
     </div>
-    <script src="assets/lightbox.js"></script>
+
 </body>
-
-
+<script src="assets/lightbox .js"></script>
 
 </html>

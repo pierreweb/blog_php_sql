@@ -30,7 +30,7 @@ foreach ($tags as $tag) {
     <meta charset="UTF-8">
     <title>Liste des tags</title>
     <link rel="stylesheet" href="assets/style.css?v=<?= time(); ?>">
-    <link rel="stylesheet" href="assets/tags.css?v=<?= time(); ?>">
+    <!-- <link rel="stylesheet" href="assets/tags.css?v=<?= time(); ?>"> -->
     <link id="theme-style" rel="stylesheet" href="">
 
     <script>

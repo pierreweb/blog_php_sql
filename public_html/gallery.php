@@ -6,7 +6,19 @@
     <title>Galerie - Conan le Barbare</title>
     <!-- <link rel="stylesheet" href="assets/style4.css?v=<?= time(); ?>"> -->
     <link rel="stylesheet" href="assets/style.css?v=<?= time(); ?>">
+
     <link id="theme-style" rel="stylesheet" href="">
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('currentTheme');
+            if (savedTheme) {
+                const themeLink = document.getElementById('theme-style');
+                if (themeLink) {
+                    themeLink.href = savedTheme;
+                }
+            }
+        });
+    </script>
 
 </head>
 

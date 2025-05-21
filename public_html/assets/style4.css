@@ -239,3 +239,51 @@ body.article-page img.postimg {
 .confirmation {
   color: green;
 }
+/* style spécifique pour la  GALLERY */
+
+.gallery-container {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px; */
+  background: darkred;
+}
+
+.gallery-item {
+  background-color: var(--colorbackground);
+  border: 2px solid #ff3300;
+  box-shadow: 0 0 10px #ff6600;
+}
+
+.gallery-item:hover {
+  box-shadow: 0 0 20px #c00;
+}
+
+.gallery-item-title {
+  background-color: var(--colorbackground);
+  border: 2px solid #ff3300;
+  box-shadow: 0 0 10px #ff6600;
+}
+
+.gallery-item img {
+  background-color: var(--colorbackground);
+  border: 3px solid #ff3300;
+  box-shadow: 0 0 15px #ff6600;
+}
+
+.back-button {
+  background-color: var(--colorbackground);
+  border: 2px solid #ff3300;
+  box-shadow: 0 0 10px #ff6600;
+  font-weight: bold;
+}
+
+/* Style pour la page de tags */
+.tag-cloud {
+  background-color: var(--colorbackground);
+  border: 2px solid #ff3300;
+  box-shadow: 0 0 10px #ff6600;
+}

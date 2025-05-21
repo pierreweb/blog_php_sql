@@ -1,131 +1,360 @@
+@font-face {
+  font-family: "ObelixPro";
+  src: url("/assets/fonts/ObelixProB-cyr.ttf") format("truetype");
+}
 /* Police style cartoon/comic proche d'ObelixPro */
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap"); */
+
+/* Import d'une police cartoon proche de "babykruffy" */
+/* @import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap"); */
+
+/* body {
+  font-family: "ObelixPro", truetype;
+  font-family: "Caesar Dressing", cursive; 
+} */
+
+:root {
+  --colorbackground: #232e50;
+  --colorbackgroundbody: #05101a;
+  /* --colorbackground: #2c1b0f;
+  --colorbackgroundbody: #1a0e05; */
+}
 
 body {
-    font-family: 'Luckiest Guy', cursive;
-    background-color: #111;
-    color: #fff3c0;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
+  margin: 0;
+  font-family: "ObelixPro", sans-serif;
 
+  background-color: var(--colorbackgroundbody);
+  color: #b3d6ff;
+  /* color: #ffe7b3; */
+}
 /* Animation du body */
-
 html {
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
-  
-  body {
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
-  
-  .main, .aside, .navbar, .footer, .header {
-    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-  }
-
-/* Conteneur principal */
-.container {
-    background-color: #111;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* HEADER avec bannière */
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.main,
+.aside,
+.navbar,
+.footer,
 .header {
-    background-image: url('/images/bannieres/Conanthebarbarianheader1.png');
-    /* background-size: cover;
-    background-position: center; */
-    height: 250px;
-    /* border-bottom: 5px solid #002060; */
+  transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+}
+/* -----------------------------
+   POLICES
+----------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+a:hover,
+u {
+  font-family: "Sigmar One", cursive !important;
 }
 
-/* NAVBAR */
-.navbar {
-    background-color: #002060;
-    /* padding: 10px;
-    text-align: center; */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #ffcc66;
+  text-shadow: 0 0 8px #1e1d17;
 }
-
-.navbar a {
-    color: #ffcc00;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-.navbar a:hover {
-    color: #fff;
-    text-shadow: 0 0 5px #ffcc00;
-}
-
-/* ZONE PRINCIPALE */
-.main-aside {
-    /* display: flex;
-    gap: 20px; */
-    background-color: #1a1a1a;
-}
-
-.main {
-    /* flex: 3;
-    padding: 20px; */
-    background-color: #222;
-}
-
-.aside {
-    /* flex: 1; */
-    background-color: #2a2a2a;
-    /* padding: 20px; */
-    color: #ffd;
-}
-
-/* FOOTER */
-.footer {
-    background-color: #002060;
-    /* text-align: center; */
-    color: #fff3c0;
-    /* padding: 20px; */
-}
-
-/* TITRES */
-h1, h2, h3, h4, h5 {
-    color: #ffcc00;
-    text-shadow: 1px 1px 2px #002060;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-h1 { font-size: 2.8em; }
-h2 { font-size: 2.2em; }
-h3 { font-size: 1.8em; }
-h4 { font-size: 1.5em; }
-h5 { font-size: 1.2em; }
 
 p {
-    font-size: 1.1em;
-    margin-bottom: 15px;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: #ffe7b3;
 }
 
 /* Liens */
 a {
-    color: #ffcc00;
-    text-decoration: none;
+  color: #ffe7b3;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
-    color: #fff;
+  text-decoration: underline;
+  color: #fff;
 }
 
 /* Texte souligné stylisé */
 u {
-    text-decoration: underline wavy #ffcc00;
+  text-decoration: underline wavy;
+  color: #ffe7b3;
+}
+/* ----------------------------
+   CONTENEUR PRINCIPAL  
+----------------------------- */
+.container {
+  background-color: var(--colorbackgroundbody);
 }
 
-/* Images dans les articles */
-/* article img {
-    max-width: 100%;
-    height: auto;
-    border: 3px solid #002060;
-    border-radius: 8px;
-    box-shadow: 2px 2px 6px #000;
-} */
+/* ----------------------------
+   HEADER
+----------------------------- */
+.header {
+  background-image: url("/images/bannieres/Conanthebarbarianheader1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 200px;
+  background-color: var(--colorbackground);
+  border: 3px solid #0074cc;
+  box-shadow: 0 0 10px #66adff;
+  /* border: 3px solid #cc9900;
+  box-shadow: 0 0 20px #ffcc66; */
+}
+
+/* ----------------------------
+   NAVBAR
+----------------------------- */
+.navbar {
+  background-color: #001b3b;
+  /* background-color: #3b1a00; */
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  border: 3px solid #0055cc;
+  box-shadow: 0 0 15px #33b8ff;
+  /* border: 3px solid #cc9900;
+  box-shadow: 0 0 15px #ffaa33; */
+}
+
+.navbar a {
+  color: #ffeb66;
+  /* color: #ffcc66; */
+  font-weight: bold;
+  /* text-decoration: none; */
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #fff3c0;
+  text-shadow: 0 0 8px #ffcc66;
+  background-color: #00183b;
+  /* background-color: #3b1a00; */
+}
+
+/* ----------------------------
+    CONTENEUR  (MAIN + ASIDE)
+----------------------------- */
+.main-aside {
+  /* display: flex;
+  gap: 20px; */
+  background-color: var(--colorbackground);
+  /* padding: 0px; */
+}
+/* ----------------------------
+   CONTENEUR POSTS
+----------------------------- */
+.main {
+  background-color: #0b1f42;
+  border: 3px solid #c5cc00;
+  box-shadow: 0 0 10px #aa8b00;
+  /* background-color: #42210b;
+  border: 3px solid #cc9900;
+  box-shadow: 0 0 10px #aa7700; */
+  padding: 10px;
+  margin: 0px;
+  border-radius: 10px;
+}
+/* ----------------------------
+   ASIDE (COLONNE DROITE)
+----------------------------- */
+.aside {
+  background-color: #0b1f42;
+  border: 3px solid #c5cc00;
+  box-shadow: 0 0 10px #aa8b00;
+  /* background-color: #42210b;
+  border: 3px solid #cc9900;
+  box-shadow: 0 0 10px #aa7700; */
+  padding: 10px;
+  margin: 0px;
+  border-radius: 10px;
+}
+/* ----------------------------
+   COMPTEUR 
+----------------------------- */
+.compteur-container {
+  font-family: "Sigmar One", cursive !important;
+  font-size: 0.95rem;
+}
+
+/* -----------------------------
+   Pagination
+--------------------------*/
+.pagination a {
+  background-color: #0b3442;
+  color: #ffe7b3;
+  /* background-color: #42210b;
+  color: #ffe7b3; */
+}
+
+.pagination a.active {
+  background-color: #14376b;
+  /* background-color: #6b3b14; */
+}
+
+.pagination a:hover {
+  background-color: #14386b;
+  /* background-color: #6b3b14; */
+}
+
+.pagination .dots {
+  color: #4a66b3;
+  /* color: #b3834a; */
+}
+
+/* ----------------------------
+   FOOTER
+----------------------------- */
+.footer {
+  background-color: #3a1d0e;
+  border: 3px solid #cc9900;
+  box-shadow: 0 0 10px #aa7700;
+  color: #ffe7b3;
+  background-color: #0e193a;
+  border: 3px solid #ccbb00;
+  box-shadow: 0 0 10px #aa7700;
+  color: #ffe7b3;
+}
+
+/* ----------------------------
+   ARTICLE.PHP
+----------------------------- */
+body.article-page {
+  background-color: #121212 !important;
+  color: #f7f6e2 !important;
+  background-color: #0b2736 !important;
+  color: #e8e4ca !important;
+  font-family: "Open Sans", sans-serif;
+  font-family: "ObelixPro", sans-serif;
+}
+
+body.article-page .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #1f1a15;
+  background-color: #303f55;
+  border-radius: 10px;
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+.article_title {
+  background: #1e1a12;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  color: #0074cc;
+}
+
+body.article h1 {
+  color: #00e1ff;
+  font-family: "Cinzel", serif;
+}
+
+body.article-page a {
+  color: #f2ff00;
+  text-decoration: underline;
+}
+.article_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* body.article-page img.postimg { */
+body .article_content img {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border: 2px solid #115befb4;
+  border-radius: 2em;
+  /* box-shadow: 10px 10px #5ff325; */
+  box-shadow: rgba(69, 143, 240, 0.839) 0px 4px 12px;
+  box-shadow: rgba(111, 190, 242, 0.71) 1px 1px 15px 15px;
+
+  color: #ffe7b3;
+}
+
+/* Formulaire de contact */
+.contact-form {
+  background: #f4f4f4;
+}
+
+.contact-form h2 {
+  font-family: "Cinzel", serif;
+}
+
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #999;
+}
+
+.contact-form button {
+  background: darkred;
+  color: white;
+}
+
+.confirmation {
+  color: green;
+}
+
+/* Gallery */
+.gallery-container {
+  background: #2c1b0f;
+}
+
+.gallery-item {
+  background-color: #3b1a00;
+  border: 2px solid #cc9900;
+  box-shadow: 0 0 10px #aa7700;
+}
+
+.gallery-item:hover {
+  box-shadow: 0 0 20px #ffaa33;
+}
+
+.gallery-item-title {
+  background-color: #3b1a00;
+  border: 2px solid #cc9900;
+  box-shadow: 0 0 10px #aa7700;
+}
+
+.gallery-item img {
+  background-color: #3b1a00;
+  border: 3px solid #cc9900;
+  box-shadow: 0 0 15px #ffaa33;
+}
+
+.back-button {
+  background-color: #3b1a00;
+  border: 2px solid #cc9900;
+  box-shadow: 0 0 10px #aa7700;
+  font-weight: bold;
+}
+
+/* Page de tags */
+.tag-cloud {
+  background-color: #3b1a00;
+  border: 2px solid #cc9900;
+  box-shadow: 0 0 10px #aa7700;
+}

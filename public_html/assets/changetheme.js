@@ -35,6 +35,12 @@ function applyTheme(index) {
     sound.play().catch((err) => console.warn("Audio bloqué :", err));
   }
 
+  // 🔽 Met à jour le texte du bouton
+  const button = document.getElementById("change-theme-btn");
+  if (button) {
+    button.textContent = `Style ${index}`;
+  }
+
   // Transition visuelle
   document.body.classList.add("fade-out");
   setTimeout(() => {
