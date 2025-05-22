@@ -28,7 +28,8 @@ $visites = file_exists('compteur.txt') ? file_get_contents('compteur.txt') : 0;
 <span class="compteur-icon">👣</span> -->
    <span class="compteur-icon">👁️</span>
 
-   <span class="compteur-texte">Visiteurs depuis la création: <strong><?= $visites ?></strong></span>
+   <p>Visiteurs depuis la création: <strong><?= $visites ?></strong></p>
+   <!-- <span class="compteur-texte">Visiteurs depuis la création: <strong><?= $visites ?></strong></span> -->
 </div>
 <h3>contactez l'auteur</h3>
 <a href='contact.php'>formulaire contact</a>

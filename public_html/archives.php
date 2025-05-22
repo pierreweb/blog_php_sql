@@ -36,7 +36,7 @@ $formatter = new \IntlDateFormatter(
 echo "<div class='archives'>";
 foreach ($archives as $annee => $moisList) {
     echo "<details>";
-    echo "<summary>$annee</summary>";
+    echo "<summary><p>$annee</p></summary>";
     echo "<ul>";
     foreach ($moisList as $m) {
         $date = new DateTime("{$annee}-{$m['mois']}-01");
@@ -46,4 +46,3 @@ foreach ($archives as $annee => $moisList) {
     echo "</ul></details>";
 }
 echo "</div>";
-?>

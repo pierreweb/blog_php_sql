@@ -1,21 +1,48 @@
 /* ----------------------------
    STYLE GÉNÉRAL
 ----------------------------- */
+@font-face {
+  font-family: "ObelixPro";
+  src: url("/assets/fonts/ObelixProB-cyr.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Pokemon";
+  src: url("/assets/fonts/Pokemon/Pokemon/PocketMonk-15ze.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "Adventure";
+  src: url("/assets/fonts/adventure/Adventure.otf") format("truetype");
+}
+@font-face {
+  font-family: "kgcrossingaline";
+  src: url("/assets/fonts/kg_crossing_a_line/KGCrossingAline.ttf")
+    format("truetype");
+}
 :root {
   --colorbackground: #1a3262;
   --colorbackgroundbody: #05101a;
   --colorbackgroundcontainer: #08131d;
-  --colortitle: #e0e92f;
-  --colorparagraphe: #d4e784;
-  --colorunderline: #f9dc00;
+  /*   --colorborder: rgba(85, 172, 215, 0.9);
+  --colorboxshadow: rgba(50, 79, 124, 0.8); */
+  --border: 5px solid rgba(85, 172, 215, 0.3);
+  --border-radius: 15px; /* Coins arrondis */
+  --box-shadow: 3px 3px 20px rgba(50, 79, 124, 0.8);
+  --colortitle: #d9ce02;
+  --colorparagraphe: #f8f866;
+  --colorunderline: #f8f866;
   --colorunderlineover: #05ccf8;
+  --mainfont: "Adventure", sans-serif;
+  --titlefont: "kgcrossingaline", serif;
+  --fontsize: 16px;
 }
 body {
-  font-family: Arial, sans-serif;
   line-height: 1.6;
-  /* background-color: #000000; */
-  color: #eee3e3;
   background-color: var(--colorbackgroundbody);
+  /* background-color: var(--colorbackground); */
+  color: var(--textcolor);
+  font-family: var(--mainfont);
+  font-size: var(--fontsize);
 }
 
 /*----------------------------
@@ -57,7 +84,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Sigmar One", cursive !important;
+  font-family: var(--titlefont) !important;
   /* font-family: "Arial", sans-serif; */
   text-shadow: 0 0 8px #1e1d17;
   color: var(--colortitle);
@@ -100,6 +127,7 @@ p {
   line-height: 1.6;
   color: var(--colorparagraphe);
   /* font-family: "Verdana", sans-serif; */
+  font-family: var(--mainfont) !important;
 }
 
 /* Polices pour les liens */
@@ -108,6 +136,7 @@ a {
   font-weight: normal;
   color: var(--colorunderline);
   text-decoration: none; /* Suppression du soulignement */
+  font-family: var(--mainfont) !important;
 }
 
 a:hover {
@@ -120,6 +149,7 @@ li {
   font-size: 1rem;
   color: var(--colorparagraphe);
   /* font-family: "Tahoma", sans-serif; */
+  font-family: var(--mainfont) !important;
 }
 
 ul {
@@ -153,15 +183,18 @@ ul {
 }
 
 .header,
-.nav,
+.navbar,
 .footer {
   width: 100%;
   background-color: var(--colorbackground);
-  border-radius: 15px; /* Coins arrondis */
+  border-radius: var(--border-radius);
+
   padding: 10px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
-  border-color: #eee3e3;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  */
+
+  border: var(--border);
+  box-shadow: var(--box-shadow);
 }
 
 /* ----------------------------
@@ -183,10 +216,10 @@ ul {
   width: 100%; /* Largeur pleine */
   border-radius: 15px; /* Coins arrondis */
   overflow: hidden; /* Masque tout dépassement éventuel */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
-  background-color: #007bff;
-  border: 3px solid #e8edf0;
-  box-shadow: 3px 3px 20px #66adff;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  /* background-color: var(--colorbackground); */
+  /* border: 3px solid #e8edf0;
+  box-shadow: 3px 3px 20px var(--colorboxshadow); */
 }
 
 /* ----------------------------
@@ -196,12 +229,12 @@ ul {
   width: 100%;
   /* height: 50px; Hauteur fixe pour la navbar */
   flex: auto;
-  background-color: #143e78;
+  /* background-color: var(--colorbackground); */
   padding: 10px;
 
-  border: 3px solid #d8e0eb;
+  /* border: 3px solid #d8e0eb;
   box-shadow: 0 0 15px #33b8ff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   border-radius: 15px;
   text-align: center;
 
@@ -219,15 +252,21 @@ ul {
   padding: 0px;
   display: flex; /* Organisation horizontale */
   justify-content: space-around; /* Espacement uniforme entre les éléments */
-  font-size: +1.5em;
+
+  /* font-family: var(--titlefont) !important; */
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .navbar li {
   margin: auto; /* Supprime le margin autour des items */
+  /* font-family: var(--titlefont) !important; */
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .navbar a {
-  color: white; /* Couleur du texte */
+  /* color: white;  */
   font-weight: bold;
   text-decoration: none; /* Supprime le soulignement */
   margin: 0 15px;
@@ -235,12 +274,19 @@ ul {
   font-size: 1em;
   /* padding: 0.5em 1em; Espacement interne pour les liens */
   transition: background-color 0.3s; /* Animation pour le changement de couleur */
+  font-family: var(--titlefont) !important;
+  color: var(--colortitle) !important;
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: inline-block; /* Nécessaire pour que transform fonctionne proprement */
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 .navbar a:hover {
-  background-color: #575757; /* Couleur de fond au survol */
-  color: #fff3c0;
-  text-shadow: 0 0 8px #ffcc66;
+  /* background-color: #575757; Couleur de fond au survol */
+  /* color: #fff3c0; */
+  transform: scale(1.2); /* Agrandit sans affecter le flux du document */
+  text-shadow: 0 0 8px #9ccbfd;
 }
 
 /* ----------------------------
@@ -252,12 +298,12 @@ ul {
   flex: 3;
   flex-direction: row;
   gap: 10px;
-  margin: 5px;
-  padding: 10px;
+  /* margin: 5px;
+  padding: 10px; */
   width: 100%;
-  border-radius: 15px; /* Coins arrondis */
-  /*   background-color: var(--colorbackground); */
-  background-color: color-mix(in srgb, var(--colorbackground) 50%, #0c99b6 50%);
+  border-radius: var(--border-radius);
+  background-color: var(--colorbackgroundcontainer);
+  /* background-color: color-mix(in srgb, var(--colorbackground) 50%, #0c99b6 50%); */
 }
 
 /* ----------------------------
@@ -267,8 +313,10 @@ ul {
 .main {
   flex: 2; /* 2/3 de la largeur */
   background-color: var(--colorbackground);
-  border-radius: 15px;
+  border-radius: var(--border-radius);
   padding: 10px;
+  border: var(--border);
+  box-shadow: var(--box-shadow);
 }
 
 /* ----------------------------
@@ -313,8 +361,10 @@ ul {
 .aside {
   flex: 1; /* 1/3 de la largeur */
   background-color: var(--colorbackground);
-  border-radius: 15px;
+  border-radius: var(--border-radius);
   padding: 10px;
+  border: var(--border);
+  box-shadow: var(--box-shadow);
 }
 
 .aside ul li a {
@@ -331,14 +381,15 @@ ul {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  font-family: inherit;
+  /* font-family: inherit; */
 }
 
 .archives {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  font-family: inherit;
+  /* font-family: inherit; */
+  color: var(--colorparagraphe);
 }
 /* ----------------------------
    COMPTEUR 
@@ -382,23 +433,32 @@ ul {
   margin: 0 4px;
   padding: 6px 12px;
   text-decoration: none;
-  background-color: #444;
-  color: white;
-  border-radius: 4px;
+  /* background-color: #444;
+  color: white; */
+  background-color: var(--colorbackground);
+
+  /* border-radius: 4px; */
+  border-radius: var(--border-radius);
   font-weight: bold;
+  font-size: +2em;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 .pagination a.active {
-  background-color: #c00;
+  background-color: rgb(148, 25, 25);
 }
 
 .pagination a:hover {
   background-color: #666;
+  /* font-size: +2.5em; */
+  color: var(--colortitle);
+  transform: scale(1.2); /* Agrandit sans affecter le flux du document */
 }
 
 .pagination .dots {
   display: inline-block;
-  color: #999;
+  color: #fffafa;
+  /* color: var(--colortitle); */
   padding: 6px 8px;
 }
 /* ----------------------------
