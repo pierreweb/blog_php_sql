@@ -11,8 +11,11 @@ $stmt = $pdo->query("
     FROM tags
     LEFT JOIN article_tags ON tags.id = article_tags.tag_id
     GROUP BY tags.id, tags.name
-    ORDER BY article_count DESC, tags.name ASC
+    -- 📌 Tri alphabétique pour un affichage ordonné
+     ORDER BY tags.name ASC
 ");
+
+// ORDER BY article_count DESC, tags.name ASC --🔥 Tri par popularité puis par nom
 $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Trouve le max pour le calcul de taille
@@ -47,30 +50,45 @@ foreach ($tags as $tag) {
 </head>
 
 <body>
-    <main>
-        <div style="text-align: center; margin: 20px;">
-            <h1>Liste des tags</h1>
+    <div class="container">
+        <div class="main-aside">
+            <main class="main-tags">
+                <div style="text-align: center; margin: 20px;">
+                    <h1>Liste des tags</h1>
+                </div>
+
+                <p>Voici la liste de tous les tags disponibles sur le blog :</p>
+
+
+
+                <div class="tag-cloud">
+                    <?php
+                    $minSize = 0.8;
+                    $maxSize = 2.0;
+                    foreach ($tags as $tag):
+                        $ratio = $maxCount > 0 ? $tag['article_count'] / $maxCount : 0;
+                        $fontSize = $minSize + ($maxSize - $minSize) * $ratio;
+                    ?>
+                        <a href="index.php?tag=<?= urlencode($tag['name']) ?>"
+                            class="tag"
+                            style="font-size: <?= round($fontSize, 2) ?>em;">
+                            <?= htmlspecialchars($tag['name']) ?> (<?= $tag['article_count'] ?>)
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+
+
+
+
+
+
+
+            </main>
+
+
         </div>
-
-        <p>Voici la liste de tous les tags disponibles sur le blog :</p>
-
-        <div class="tag-cloud">
-            <?php
-            $minSize = 0.8;
-            $maxSize = 2.0;
-            foreach ($tags as $tag):
-                $ratio = $maxCount > 0 ? $tag['article_count'] / $maxCount : 0;
-                $fontSize = $minSize + ($maxSize - $minSize) * $ratio;
-            ?>
-                <a href="tag.php?tag=<?= urlencode($tag['name']) ?>" style="font-size: <?= round($fontSize, 2) ?>em;">
-                    <?= htmlspecialchars($tag['name']) ?> (<?= $tag['article_count'] ?>)
-
-
-                <?php endforeach; ?>
-        </div>
-    </main>
-
-    <p><a href="index.php">Retour à l'accueil</a></p>
+        <p><a href="index.php">Retour à l'accueil</a></p>
+    </div>
 </body>
 
 </html>

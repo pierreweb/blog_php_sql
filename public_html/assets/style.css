@@ -36,6 +36,14 @@
   --titlefont: "kgcrossingaline", serif;
   --fontsize: 16px;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   line-height: 1.6;
   background-color: var(--colorbackgroundbody);
@@ -310,13 +318,20 @@ ul {
    CONTENEUR POSTS
 ----------------------------- */
 
-.main {
+.main,
+.main-tags {
   flex: 2; /* 2/3 de la largeur */
   background-color: var(--colorbackground);
   border-radius: var(--border-radius);
   padding: 10px;
   border: var(--border);
   box-shadow: var(--box-shadow);
+}
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
 }
 
 /* ----------------------------
@@ -374,6 +389,7 @@ ul {
 .aside ul li a:hover {
   text-decoration: underline;
 }
+/*categorie cloud*/
 .category-cloud {
   all: unset;
 }
@@ -382,6 +398,29 @@ ul {
   flex-wrap: wrap;
   gap: 10px;
   /* font-family: inherit; */
+}
+.category-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-cloud a {
+  text-decoration: none;
+  /* color: #333;*/
+}
+
+.category-cloud .large {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.category-cloud .medium {
+  font-size: 18px;
+}
+
+.category-cloud .small {
+  font-size: 14px;
 }
 
 .archives {
@@ -772,13 +811,28 @@ iframe {
 /* ----------------------------
    TAGS 
 ----------------------------- */
+
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 10px; /* 🔄 Espacement uniforme entre les tags */
+  justify-content: center;
+  /*align-items: baseline; /* 🔄 Alignement basé sur le texte du tag */
+  align-items: center; /* 🔥 Force l'alignement vertical au centre */
 }
 
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+
+  text-align: center;
+  line-height: 1.2; /* 🔄 Ajuste l’espacement interne */
+  min-height: 30px; /* 🔥 Uniformise la hauteur des tags */
+  line-height: 30px; /* 🔥 Aligne le texte au centre */
+}
+.main-tags {
+  min-height: 90vh; /* 🔄 Prend toute la hauteur de la fenêtre */
+}
 /* ----------------------------
    BOUTON CHANGE-THEME
 ------------------------------- */

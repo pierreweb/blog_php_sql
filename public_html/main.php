@@ -1,17 +1,40 @@
 <?php
+require 'config.php'; // 🔥 Connexion à la base
+
+$category = $_GET['category'] ?? null; // 🔄 Récupérer la catégorie
+$tag = $_GET['tag'] ?? null; // 🔄 Récupérer le tag
+
 // Pagination
 $articlesParPage = 4;
 $pageCourante = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($pageCourante - 1) * $articlesParPage;
 
-// Requête paginée
-$stmt = $pdo->prepare("SELECT * FROM articles ORDER BY created_at DESC LIMIT :limit OFFSET :offset");
-$stmt->bindValue(':limit', $articlesParPage, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$stmt->execute();
+// 🔥 Construction de la requête SQL
+$query = "SELECT DISTINCT a.* FROM articles a";
+$params = [];
 
+if ($tag) {
+  $query = "SELECT DISTINCT a.* FROM articles a
+          JOIN article_tags at ON a.id = at.article_id
+          JOIN tags t ON at.tag_id = t.id
+          WHERE t.name = ?";
+
+  $params = [$tag];
+} elseif ($category) {
+  $query .= " WHERE a.category = ?";
+  $params[] = $category;
+}
+
+// 🔄 Ajout de la condition pour les articles publiés
+
+$query .= " ORDER BY a.created_at DESC LIMIT " . intval($articlesParPage) . " OFFSET " . intval($offset);
+
+$stmt = $pdo->prepare($query);
+$stmt->execute($params);
 $articles = $stmt->fetchAll();
 
+
+// 🔄 Affichage des articles
 foreach ($articles as $article) {
   $date = (new DateTime($article['created_at']))->format('d/m/Y');
   echo "<article class='article'>";
@@ -24,138 +47,72 @@ foreach ($articles as $article) {
   echo "<a href='article.php?id={$article['id']}'>Lire la suite</a>";
   echo "</article>";
 }
+if ($tag) { // 🔥 Afficher uniquement si un tag est sélectionné
+  echo '<div class="navigation-links">';
+  echo '<p><a href="index.php">🏠 Retour à l\'accueil</a></p>';
+  echo '<p><a href="page_tags.php">🏷️ Retour à la liste des tags</a></p>';
+  echo '</div>';
+}
 
 
 
-/* // Pagination en bas
-$count = $pdo->query("SELECT COUNT(*) FROM articles")->fetchColumn();
+
+// 🔄 Comptage des articles pour la pagination
+$queryCount = "SELECT COUNT(*) FROM articles a";
+
+if ($tag) {
+  // 🔥 Requête pour compter les articles associés à un tag spécifique
+  $queryCount = "SELECT DISTINCT a.* FROM articles a
+          JOIN article_tags at ON a.id = at.article_id
+          JOIN tags t ON at.tag_id = t.id
+          WHERE t.name = ?";
+  $paramsCount = [$tag];
+} elseif ($category) {
+  $queryCount .= " WHERE a.category = ?";
+  $paramsCount = [$category];
+} else {
+  $paramsCount = [];
+}
+
+$stmt = $pdo->prepare($queryCount);
+$stmt->execute($paramsCount);
+$count = $stmt->fetchColumn();
 $totalPages = ceil($count / $articlesParPage);
 
-if ($totalPages > 1) {
-echo "<div class='pagination'>";
-
-  // Liens vers les pages numérotées
-  for ($i = 1; $i <= $totalPages; $i++) {
-    $active=$i===$pageCourante ? 'class="active"' : '' ;
-    echo "<a href='?page=$i' $active>$i</a> " ;
-    }
-
-    // Lien page suivante
-    if ($pageCourante < $totalPages) {
-    $nextPage=$pageCourante + 1;
-    echo "<a href='?page=$nextPage'>&gt;</a> " ;
-    echo "<a href='?page=$totalPages'>&gt;&gt;</a>" ;
-    }
-
-    echo "</div>" ;
-    } */
-
-/* // Pagination en bas
-    $count=$pdo->query("SELECT COUNT(*) FROM articles")->fetchColumn();
-    $totalPages = ceil($count / $articlesParPage);
-
-    if ($totalPages > 1) {
-    echo "<div class='pagination'>";
-
-      // Lien vers la première page
-      if ($pageCourante > 1) {
-      echo "<a href='?page=1'>&laquo;</a> "; // <<
-        echo "<a href='?page=" . ($pageCourante - 1) . "'>&lt;</a> " ; // <
-        }
-
-        // Liens vers les pages numérotées
-        for ($i=1; $i <=$totalPages; $i++) {
-        $active=$i===$pageCourante ? 'class="active"' : '' ;
-        echo "<a href='?page=$i' $active>$i</a> " ;
-        }
-
-        // Lien vers la page suivante et dernière page
-        if ($pageCourante < $totalPages) {
-        echo "<a href='?page=" . ($pageCourante + 1) . "'>&gt;</a> " ; //>
-        echo "<a href='?page=$totalPages'>&raquo;</a>"; // >>
-        }
-
-        echo "</div>";
-    } */
-/*
-    $count = $pdo->query("SELECT COUNT(*) FROM articles")->fetchColumn();
-    $totalPages = ceil($count / $articlesParPage);
-
-    if ($totalPages > 1) {
-    echo "<div class='pagination'>";
-
-      // Liens << et <
-        if ($pageCourante> 1) {
-        echo "<a href='?page=1'>&laquo;</a> ";
-        echo "<a href='?page=" . ($pageCourante - 1) . "'>&lt;</a> ";
-        }
-
-        $range = 1; // Nombre de pages autour de la page courante à afficher
-
-        // Affiche toujours la première page
-        if ($pageCourante > $range + 2) {
-        echo "<a href='?page=1'>1</a> ";
-        echo "<span class='dots'>...</span> ";
-        }
-
-        // Pages autour de la page courante
-        for ($i = max(1, $pageCourante - $range); $i <= min($totalPages, $pageCourante + $range); $i++) {
-          $active=$i===$pageCourante ? 'class="active"' : '' ;
-          echo "<a href='?page=$i' $active>$i</a> " ;
-          }
-
-          // Affiche toujours la dernière page
-          if ($pageCourante < $totalPages - $range - 1) {
-          echo "<span class='dots'>...</span> " ;
-          echo "<a href='?page=$totalPages'>$totalPages</a> " ;
-          }
-
-          // Liens> et >>
-          if ($pageCourante < $totalPages) {
-            echo "<a href='?page=" . ($pageCourante + 1) . "'>&gt;</a> " ;
-            echo "<a href='?page=$totalPages'>&raquo;</a>" ;
-            }
-
-            echo "</div>" ;
-            }
-            */
-$count = $pdo->query("SELECT COUNT(*) FROM articles")->fetchColumn();
-$totalPages = ceil($count / $articlesParPage);
-
+// 🔥 Gestion de la pagination
 if ($totalPages > 1) {
   echo "<div class='pagination'>";
 
-  // Liens << et <
   if ($pageCourante > 1) {
-    echo "<a href='?page=1'>&laquo;</a> ";
-    echo "<a href='?page=" . ($pageCourante - 1) . "'>&lt;</a> ";
+    echo "<a href='?page=1" . ($category ? "&category=$category" : "") . "'>&laquo;</a> ";
+    echo "<a href='?page=" . ($pageCourante - 1) . ($category ? "&category=$category" : "") . "'>&lt;</a> ";
   }
 
   $range = 1; // Nombre de pages autour de la page courante à afficher
 
-  // Affiche toujours la première page
   if ($pageCourante > $range + 2) {
-    echo "<a href='?page=1'>1</a> ";
+    echo "<a href='?page=1" . ($category ? "&category=$category" : "") . "'>1</a> ";
     echo "<span class='dots'>...</span> ";
   }
 
-  // Pages autour de la page courante
   for ($i = max(1, $pageCourante - $range); $i <= min($totalPages, $pageCourante + $range); $i++) {
-    $active = $i === $pageCourante ? 'class="active"' : '';
-    echo "<a href='?page=$i' $active>$i</a> ";
+    $active = $i === $pageCourante ? 'class=\"active\"' : '';
+    echo "<a href='?page=$i" . ($category ? "&category=$category" : "") . "' $active>$i</a> ";
   }
 
-  // Affiche toujours la dernière page
   if ($pageCourante < $totalPages - $range - 1) {
     echo "<span class='dots'>...</span> ";
-    echo "<a href='?page=$totalPages'>$totalPages</a> ";
+    echo "<a href='?page=$totalPages" . ($category ? "&category=$category" : "") . "'>$totalPages</a> ";
   }
 
-  // Liens> et >>
   if ($pageCourante < $totalPages) {
-    echo "<a href='?page=" . ($pageCourante + 1) . "'>&gt;</a> ";
-    echo "<a href='?page=$totalPages'>&raquo;</a>";
+    echo "<a href='?page=" . ($pageCourante + 1) . ($category ? "&category=$category" : "") . "'>&gt;</a> ";
+    echo "<a href='?page=$totalPages" . ($category ? "&category=$category" : "") . "'>&raquo;</a>";
   }
 
   echo "</div>";
 }
+echo '<div class="scroll-top">';
+echo '<p></p>';
+echo '<p><a href="#top">🔝 Retour en haut</a></p>';
+echo '</div>';

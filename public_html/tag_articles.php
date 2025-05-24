@@ -56,17 +56,7 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <!--   <header>
-        <h1>Conan Blog</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="page_tags.php">Tags</a></li>
-                <li><a href="gallery.php">Galerie</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </nav>
-    </header> -->
+
 
     <main>
 
