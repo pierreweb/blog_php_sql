@@ -8,5 +8,9 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="page_liens.php">Liens</a></li>
     <li><a href="affichedatabase.php">database</a></li>
+    <li><a href="page1_3d.php">magic portal</a></li>
+    <li><a href="page2_3d.php">black pyramid</a></li>
+    <li><a href="page3_3d.php">arena</a></li>
+
 
 </ul>

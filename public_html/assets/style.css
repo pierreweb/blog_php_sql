@@ -880,6 +880,21 @@ iframe {
 .main-tags {
   min-height: 90vh; /* 🔄 Prend toute la hauteur de la fenêtre */
 }
+
+/* ----------------------------
+   3D
+----------------------------- */
+
+.main-3d {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 90vh; /* 🔄 Prend toute la hauteur de la fenêtre */
+  align-items: top;
+  justify-content: left;
+  gap: 20px;
+  padding: 10px;
+}
 /* ----------------------------
    BOUTON CHANGE-THEME
 ------------------------------- */

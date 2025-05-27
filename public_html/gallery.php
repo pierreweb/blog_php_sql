@@ -40,7 +40,9 @@
                     ['id' => 'Qy4ziFunjwvmZp1phc0V', 'title' => 'Frankenstein', 'thumb' => 'https://ahp.li/a2d72df419c6381d83b5.jpg'],
                     ['id' => '0iqEx1h4893m3j1zra7y', 'title' => 'ken Kelly Art', 'thumb' => 'https://ahp.li/170115fff074c6914c7c.jpg'],
                     ['id' => 'X09H5jniuyEEnzp9wZxa', 'title' => 'boris Vallero Art', 'thumb' => 'https://ahp.li/77c13abc88a1cb887baf.jpg'],
-
+                    ['id' => 'X09H5jniuyEEnzp9wZxa', 'title' => 'Science fiction', 'thumb' => 'https://ahp.li/77c13abc88a1cb887baf.jpg'],
+                    ['id' => 'X09H5jniuyEEnzp9wZxa', 'title' => 'western,policier,divers', 'thumb' => 'https://ahp.li/77c13abc88a1cb887baf.jpg'],
+                    ['id' => 'X09H5jniuyEEnzp9wZxa', 'title' => 'Fantasy Art', 'thumb' => 'https://ahp.li/77c13abc88a1cb887baf.jpg'],
                 ];
 
                 // Trier le tableau par titre
