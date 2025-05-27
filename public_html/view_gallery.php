@@ -13,41 +13,21 @@ $url = "http://diaporama.archive-host.com/g/fullscreen.php?id=$id";
 <head>
     <meta charset="UTF-8">
     <title>Galerie</title>
-    <link rel="stylesheet" href="assets/style4.css?v=<?= time(); ?>">
-    <style>
-        .iframe-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 10px;
-            background-color: #111;
-            border: 2px solid #a52a2a;
-            border-radius: 10px;
-        }
+    <link rel="stylesheet" href="assets/style.css?v=<?= time(); ?>">
+    <link id="theme-style" rel="stylesheet" href="">
 
-        iframe {
-            width: 100%;
-            height: 700px;
-            border: none;
-        }
-
-        .back-gallery {
-            display: block;
-            text-align: center;
-            margin: 30px;
-            color: #ccc;
-        }
-
-        .back-gallery:hover {
-            color: #fff;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="iframe-container">
-        <iframe src="<?= $url ?>" allowfullscreen></iframe>
+    <div class="container">
+        <div class="main-view-gallery">
+            <div class="iframe-container">
+                <iframe src="<?= $url ?>" allowfullscreen></iframe>
+            </div>
+
+            <a class="back-gallery" href="gallery.php">← Retour à la galerie</a>
+        </div>
     </div>
-    <a class="back-gallery" href="gallery.php">← Retour à la galerie</a>
 </body>
 
 </html>

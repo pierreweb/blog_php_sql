@@ -187,6 +187,17 @@
                                 <a href="http://ultimateconanfan.blogspot.com/" target="_blank">ultimateconanfan.blogspot.com</a>
                             </li>
                         </ul>
+                        <div class="title">site sur jules Verne</div>
+                        <ul>
+                            <li>
+                                <a href="https://jules-verne.fandom.com/fr/wiki/Cat%C3%A9gorie:Liste_des_illustrateurs_des_%C5%93uvres_de_Jules_Verne" target="_blank">fandom jules Verne</a>
+                            </li>
+                            <!--     http://verne.jules.free.fr/illustra.htm
+                            https://jules-verne.net/l-oeuvre/le-revoir-le-mur-des-illustrateurs/
+                            http://jv.gilead.org.il/rpaul/
+                            https://www.julesverne.ca/ -->
+
+                        </ul>
                     </div>
                 </div>
 

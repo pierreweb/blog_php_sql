@@ -23,29 +23,46 @@
 </head>
 
 <body>
-    <div class="gallery-container">
-        <?php
-        $galeries = [
-            ['id' => 'xgYJ099wlYep4a8uujuY', 'title' => 'Aventures 1', 'thumb' => 'https://archive-host.com/thumb1.jpg'],
-            ['id' => 'fDnMdkE1ozCrdJh34rdE', 'title' => 'King Kong', 'thumb' => 'https://ahp.li/411d0217e731cc1bf234.jpg'],
-            ['id' => '5cwTosprArxqjrpfvb2Z', 'title' => 'Personnages masculins', 'thumb' => 'https://ahp.li/4f7151c0027ea7368881.png'],
-            ['id' => 'ghi789', 'title' => 'Combat épique', 'thumb' => 'https://archive-host.com/thumb4.jpg'],
-            ['id' => 'jkl999', 'title' => 'Paysages Hyboriens', 'thumb' => 'https://archive-host.com/thumb5.jpg'],
-            ['id' => 'mno777', 'title' => 'Bestiaire barbare', 'thumb' => 'https://archive-host.com/thumb6.jpg'],
-        ];
+    <div class="container">
+        <div class="main-aside">
+            <div class="gallery-container">
+                <?php
+                $galeries = [
+                    ['id' => 'w4CkH2aFk0lfjVqtQ3p0', 'title' => 'Dracula', 'thumb' => 'https://ahp.li/ff77afef2fa967b627ef.jpg'],
+                    ['id' => 'fDnMdkE1ozCrdJh34rdE', 'title' => 'King Kong', 'thumb' => 'https://ahp.li/411d0217e731cc1bf234.jpg'],
+                    ['id' => '5cwTosprArxqjrpfvb2Z', 'title' => 'Personnages masculins', 'thumb' => 'https://ahp.li/4f7151c0027ea7368881.png'],
+                    ['id' => 'Eww5uJxhglhhne1j00uk', 'title' => 'Frazetta Art', 'thumb' => 'https://ahp.li/m/2/25b399f19d5a802f88f6.jpg'],
+                    ['id' => 'bhmrb68ipPj9iIE6xx8p', 'title' => 'Horreur', 'thumb' => 'https://ahp.li/ae2232bd51b8d00dd1da.jpg'],
+                    ['id' => 'Qy4ziFunjwvmZp1phc0V', 'title' => 'Frankenstein', 'thumb' => 'https://ahp.li/a2d72df419c6381d83b5.jpg'],
+                    ['id' => 'wyh41dP9ayb1mzddBlZ8', 'title' => 'jules Verne Art', 'thumb' => 'https://ahp.li/d3e7bb32068420654584.jpg'],
+                    ['id' => 'nBcrek9YTi1Kvn4kt48g', 'title' => 'brocal Remohi Art', 'thumb' => 'https://ahp.li/ead85214977edd987de6.jpg'],
+                    ['id' => 'bhmrb68ipPj9iIE6xx8p', 'title' => 'Horreur', 'thumb' => 'https://ahp.li/ae2232bd51b8d00dd1da.jpg'],
+                    ['id' => 'Qy4ziFunjwvmZp1phc0V', 'title' => 'Frankenstein', 'thumb' => 'https://ahp.li/a2d72df419c6381d83b5.jpg'],
+                    ['id' => '0iqEx1h4893m3j1zra7y', 'title' => 'ken Kelly Art', 'thumb' => 'https://ahp.li/170115fff074c6914c7c.jpg'],
+                    ['id' => 'X09H5jniuyEEnzp9wZxa', 'title' => 'boris Vallero Art', 'thumb' => 'https://ahp.li/77c13abc88a1cb887baf.jpg'],
 
-        foreach ($galeries as $g) {
-            echo "<a class='gallery-item' href='view_gallery.php?id={$g['id']}'>";
-            echo "<div class='gallery-item-title'><h4>{$g['title']}</h4></div>";
-            echo "<img src='{$g['thumb']}' alt='Aperçu'>";
+                ];
 
-            echo "</a>";
-        }
-        ?>
+                // Trier le tableau par titre
+                usort($galeries, function ($a, $b) {
+                    return strcmp($a['title'], $b['title']);
+                });
+
+
+                foreach ($galeries as $g) {
+                    echo "<a class='gallery-item' href='view_gallery.php?id={$g['id']}'>";
+                    echo "<div class='gallery-item-title'><h4>{$g['title']}</h4></div>";
+                    echo "<img src='{$g['thumb']}' alt='Aperçu'>";
+
+                    echo "</a>";
+                }
+                ?>
+            </div>
+        </div>
+
+
+        <a href="index.php" class="back-home">← Retour au blog</a>
     </div>
-
-
-    <a href="index.php" class="back-home">← Retour au blog</a>
 </body>
 
 </html>
